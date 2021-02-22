@@ -8,12 +8,12 @@
           <span>用户管理</span>
         </a-menu-item>
         <a-sub-menu key="sub1">
-          <span slot="title"><a-icon type="shop" /><span>admin</span></span>
-           <a-menu-item key="/info/shop/addshop">
-            新增
+          <span slot="title"><a-icon type="admin" /><span>admin</span></span>
+           <a-menu-item key="/admin/adminList">
+            管理员列表
           </a-menu-item>
-          <a-menu-item key="/info/shop">
-            所有
+          <a-menu-item key="/admin/addAdmin">
+            新增管理员
           </a-menu-item>
         </a-sub-menu>
         <a-sub-menu key="sub1">
