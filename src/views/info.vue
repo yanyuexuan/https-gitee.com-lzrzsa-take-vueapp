@@ -14,11 +14,7 @@
         </a-menu-item>
         <a-sub-menu key="sub1">
           <span slot="title"><a-icon type="shop" /><span>admin</span></span>
-<<<<<<< HEAD
-          <a-menu-item key="/info/shop/addshop">
-=======
            <a-menu-item key="">
->>>>>>> a122a2fa22f77c16b2e2742b0bf6441bb7ec4873
             新增
           </a-menu-item>
           <a-menu-item key="">
@@ -27,11 +23,7 @@
         </a-sub-menu>
         <a-sub-menu key="sub2">
           <span slot="title"><a-icon type="shop" /><span>店铺</span></span>
-<<<<<<< HEAD
-          <a-menu-item key="/info/shop/addshop">
-=======
            <a-menu-item key="">
->>>>>>> a122a2fa22f77c16b2e2742b0bf6441bb7ec4873
             新增店铺
           </a-menu-item>
           <a-menu-item key="">
@@ -96,10 +88,6 @@
 </template>
 
 <script>
-<<<<<<< HEAD
-=======
-
->>>>>>> a122a2fa22f77c16b2e2742b0bf6441bb7ec4873
 export default {
   data() {
     return {
