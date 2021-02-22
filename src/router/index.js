@@ -8,8 +8,14 @@ const routes = [
     path: "/info",
     name: "info",
     component: Info,
-    children: []
-  },
+    children: [
+      {
+        path: "/orders",
+        name: "Orders",
+        component: () => import("../components/orders/orders.vue")
+      }
+    ]
+  }
 ];
 
 const router = new VueRouter({
