@@ -3,7 +3,11 @@ import VueRouter from "vue-router";
 import Info from "../views/info.vue";
 import Admin from "../components/admin/adminList.vue"
 import AddAdmin from "../components/admin/addAdmin.vue"
+import commodityRouter from "./commodity";
 Vue.use(VueRouter);
+
+
+
 
 const routes = [
   {
@@ -20,7 +24,7 @@ const routes = [
     path: "/info",
     name: "info",
     component: Info,
-    children: []
+    children: [...commodityRouter]
   },
 ];
 
