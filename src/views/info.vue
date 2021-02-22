@@ -9,33 +9,33 @@
         </a-menu-item>
         <a-sub-menu key="sub1">
           <span slot="title"><a-icon type="shop" /><span>admin</span></span>
-           <a-menu-item key="/info/shop/addshop">
+           <a-menu-item key="">
             新增
           </a-menu-item>
-          <a-menu-item key="/info/shop">
+          <a-menu-item key="">
             所有
           </a-menu-item>
         </a-sub-menu>
-        <a-sub-menu key="sub1">
+        <a-sub-menu key="sub2">
           <span slot="title"><a-icon type="shop" /><span>店铺</span></span>
-           <a-menu-item key="/info/shop/addshop">
+           <a-menu-item key="">
             新增店铺
           </a-menu-item>
-          <a-menu-item key="/info/shop">
+          <a-menu-item key="">
             所有店铺
           </a-menu-item>
          
         </a-sub-menu>
-        <a-sub-menu key="sub2">
+        <a-sub-menu key="sub3">
           <span slot="title"><a-icon type="team" /><span>商品</span></span>
-          <a-menu-item key="6">
-            Team 1
+          <a-menu-item key="/info/commoditylist">
+            商品信息
           </a-menu-item>
-          <a-menu-item key="8">
-            Team 2
+          <a-menu-item key="/info/addcommodity">
+            新增商品
           </a-menu-item>
         </a-sub-menu>
-        <a-sub-menu key="sub2">
+        <a-sub-menu key="sub4">
           <span slot="title"><a-icon type="team" /><span>订单</span></span>
           <a-menu-item key="6">
             Team 1
@@ -44,7 +44,7 @@
             Team 2
           </a-menu-item>
         </a-sub-menu>
-        <a-sub-menu key="sub2">
+        <a-sub-menu key="sub5">
           <span slot="title"><a-icon type="team" /><span>优惠劵</span></span>
           <a-menu-item key="6">
             Team 1
@@ -73,26 +73,9 @@
       </a-layout-footer>
     </a-layout>
   </a-layout>
-  <!-- <div>
-    <h1>info</h1>
-    <ul>
-      <li>
-        <a-button size="small" type="primary">Primary</a-button>
-        <router-link to="/info/comment">评论</router-link>
-      </li>
-      <li>
-        <router-link to="/info/order">订单</router-link>
-      </li>
-      <li>
-        <router-link to="/info/shop">店铺</router-link>
-      </li>
-    </ul>
-    <router-view />
-  </div> -->
 </template>
 
 <script>
-
 
 export default {
   
