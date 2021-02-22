@@ -5,12 +5,17 @@
       <a-menu theme="dark" :default-selected-keys="['1']" mode="inline"  @click="handleClick">
         <a-menu-item key="1">
           <a-icon type="pie-chart" />
-          <span>Option 1</span>
+          <span>用户管理</span>
         </a-menu-item>
-        <a-menu-item key="2">
-          <a-icon type="desktop" />
-          <span>Option 2</span>
-        </a-menu-item>
+        <a-sub-menu key="sub1">
+          <span slot="title"><a-icon type="shop" /><span>admin</span></span>
+           <a-menu-item key="/info/shop/addshop">
+            新增
+          </a-menu-item>
+          <a-menu-item key="/info/shop">
+            所有
+          </a-menu-item>
+        </a-sub-menu>
         <a-sub-menu key="sub1">
           <span slot="title"><a-icon type="shop" /><span>店铺</span></span>
            <a-menu-item key="/info/shop/addshop">
@@ -22,7 +27,7 @@
          
         </a-sub-menu>
         <a-sub-menu key="sub2">
-          <span slot="title"><a-icon type="team" /><span>Team</span></span>
+          <span slot="title"><a-icon type="team" /><span>商品</span></span>
           <a-menu-item key="6">
             Team 1
           </a-menu-item>
@@ -30,7 +35,24 @@
             Team 2
           </a-menu-item>
         </a-sub-menu>
-        
+        <a-sub-menu key="sub2">
+          <span slot="title"><a-icon type="team" /><span>订单</span></span>
+          <a-menu-item key="6">
+            Team 1
+          </a-menu-item>
+          <a-menu-item key="8">
+            Team 2
+          </a-menu-item>
+        </a-sub-menu>
+        <a-sub-menu key="sub2">
+          <span slot="title"><a-icon type="team" /><span>优惠劵</span></span>
+          <a-menu-item key="6">
+            Team 1
+          </a-menu-item>
+          <a-menu-item key="8">
+            Team 2
+          </a-menu-item>
+        </a-sub-menu>
       </a-menu>
     </a-layout-sider>
     <a-layout>
