@@ -46,17 +46,11 @@
         </a-sub-menu>
         <a-sub-menu key="sub5">
           <span slot="title"><a-icon type="team" /><span>优惠劵</span></span>
-          <a-menu-item key="1">
-           新增
+          <a-menu-item key="/info/couponslist">
+           优惠券信息
           </a-menu-item>
-          <a-menu-item key="2">
-           查询
-          </a-menu-item>
-          <a-menu-item key="6">
-            修改
-          </a-menu-item>
-          <a-menu-item key="8">
-            删除
+          <a-menu-item key="/info/addcoupons">
+           新增优惠券
           </a-menu-item>
         </a-sub-menu>
       </a-menu>
