@@ -1,15 +1,15 @@
 import addShops from "../components/shops/addshop.vue";
-import shopList from "../components/shops/shopsList.vue"
+import shopsList from "../components/shops/shopsList.vue";
 const routes = [
+  {
+    path: "shopslist",
+    name: "shopslist",
+    component: shopsList
+  },
   {
     path: "addshops",
     name: "addshops",
     component: addShops
-  },
-  {
-    path: "shoplist",
-    name: "shoplist",
-    component: shopList
   }
 ];
 export default routes;
