@@ -13,11 +13,11 @@
           <span>用户管理</span>
         </a-menu-item>
         <a-sub-menu key="sub1">
-          <span slot="title"><a-icon type="admin" /><span>admin</span></span>
-           <a-menu-item key="/admin/adminList">
+          <span slot="title"><a-icon type="admin" /><span>管理员</span></span>
+          <a-menu-item key="/info/adminList">
             管理员列表
           </a-menu-item>
-          <a-menu-item key="/admin/addAdmin">
+          <a-menu-item key="/info/addAdmin">
             新增管理员
           </a-menu-item>
           <span slot="title"><a-icon type="shop" /><span>admin</span></span>
@@ -30,7 +30,7 @@
         </a-sub-menu>
         <a-sub-menu key="sub2">
           <span slot="title"><a-icon type="shop" /><span>店铺</span></span>
-           <a-menu-item key="">
+          <a-menu-item key="">
             新增店铺
           </a-menu-item>
           <a-menu-item key="">
@@ -38,7 +38,7 @@
           </a-menu-item>
         </a-sub-menu>
         <a-sub-menu key="sub3">
-          <span slot="title"><a-icon type="team" /><span>商品</span></span>
+          <span slot="title"><a-icon type="shopping" /><span>商品</span></span>
           <a-menu-item key="/info/commoditylist">
             商品信息
           </a-menu-item>
@@ -47,13 +47,11 @@
           </a-menu-item>
         </a-sub-menu>
         <a-sub-menu key="sub4">
-          <span slot="title"><a-icon type="team" /><span>订单</span></span>
-          <a-menu-item key="6">
-            Team 1
-          </a-menu-item>
-          <a-menu-item key="8">
-            Team 2
-          </a-menu-item>
+          <span slot="title"
+            ><a-icon type="team" /><router-link to="Orders" class="home"
+              >订单</router-link
+            ></span
+          >
         </a-sub-menu>
         <a-sub-menu key="sub5">
           <span slot="title"><a-icon type="team" /><span>优惠劵</span></span>
@@ -92,14 +90,14 @@
 export default {
   data() {
     return {
-      collapsed: false
+      collapsed: false,
     };
   },
   methods: {
     handleClick({ key }) {
       this.$router.push({ path: `${key}` });
-    }
-  }
+    },
+  },
 };
 </script>
 
