@@ -1,15 +1,13 @@
 import Vue from "vue";
 import Vuex from "vuex";
-import admin from "./admin.js";
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
-  // 全局的状态
+  // 状态
   state: {},
-  // 全局的方法
+  // 方法
   mutations: {},
+  // 异步请求
   actions: {},
-  // 分块的引入
-  modules: { admin }
 });
