@@ -2,7 +2,12 @@ import Vue from "vue";
 import Vuex from "vuex";
 import commodity from "./commodity";
 import admin from "./admin.js";
+
 import shops from "./shops.js";
+
+import coupons from "./coupons.js"
+
+
 Vue.use(Vuex);
 
 export default new Vuex.Store({
@@ -15,6 +20,9 @@ export default new Vuex.Store({
   modules: {
     commodity,
     admin,
-    shops
+    shops,
+    coupons
   }
+
+  
 });
