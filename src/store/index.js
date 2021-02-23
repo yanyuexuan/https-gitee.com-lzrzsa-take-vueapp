@@ -1,5 +1,6 @@
 import Vue from "vue";
 import Vuex from "vuex";
+import commodity from "./commodity";
 import admin from "./admin.js";
 
 Vue.use(Vuex);
@@ -11,5 +12,9 @@ export default new Vuex.Store({
   mutations: {},
   actions: {},
   // 分块的引入
-  modules: { admin }
+  modules: {
+    commodity,
+    admin
+  },
+  
 });
