@@ -2,6 +2,7 @@ import Vue from "vue";
 import Vuex from "vuex";
 import commodity from "./commodity";
 import admin from "./admin.js";
+import coupons from "./coupons.js"
 
 Vue.use(Vuex);
 
@@ -14,7 +15,7 @@ export default new Vuex.Store({
   // 分块的引入
   modules: {
     commodity,
-    admin
+    admin,
+    coupons
   },
-  
 });

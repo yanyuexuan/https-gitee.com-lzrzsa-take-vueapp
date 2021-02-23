@@ -20,6 +20,13 @@
           <a-menu-item key="/info/addAdmin">
             新增管理员
           </a-menu-item>
+          <span slot="title"><a-icon type="shop" /><span>admin</span></span>
+           <a-menu-item key="">
+            新增
+          </a-menu-item>
+          <a-menu-item key="">
+            所有
+          </a-menu-item>
         </a-sub-menu>
         <a-sub-menu key="sub2">
           <span slot="title"><a-icon type="shop" /><span>店铺</span></span>
