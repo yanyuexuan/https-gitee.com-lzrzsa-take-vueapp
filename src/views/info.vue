@@ -19,6 +19,7 @@
           </a-menu-item>
           <a-menu-item key="/admin/addAdmin">
             新增管理员
+            </a-menu-item>
           <span slot="title"><a-icon type="shop" /><span>admin</span></span>
            <a-menu-item key="">
             新增
