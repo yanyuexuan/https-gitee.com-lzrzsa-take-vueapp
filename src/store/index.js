@@ -1,6 +1,7 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import admin from "./admin.js";
+import coupons from "./coupons.js"
 
 Vue.use(Vuex);
 
@@ -11,5 +12,5 @@ export default new Vuex.Store({
   mutations: {},
   actions: {},
   // 分块的引入
-  modules: { admin }
+  modules: { admin ,coupons}
 });
