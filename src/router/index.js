@@ -4,7 +4,7 @@ import Info from "../views/info.vue";
 import Admin from "../components/admin/adminList.vue"
 import AddAdmin from "../components/admin/addAdmin.vue"
 import commodityRouter from "./commodity";
-import couponsRouter from "./coupons"
+import couponsRouter from "./coupons";
 Vue.use(VueRouter);
 
 const routes = [
@@ -22,8 +22,14 @@ const routes = [
     path: "/info",
     name: "info",
     component: Info,
-    children: [...commodityRouter,...couponsRouter]
-  },
+    children: [
+      {
+        path: "/orders",
+        name: "Orders",
+        component: () => import("../components/orders/orders.vue")
+      },...commodityRouter,...couponsRouter
+    ]
+  }
 ];
 
 const router = new VueRouter({

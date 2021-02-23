@@ -46,13 +46,11 @@
           </a-menu-item>
         </a-sub-menu>
         <a-sub-menu key="sub4">
-          <span slot="title"><a-icon type="team" /><span>订单</span></span>
-          <a-menu-item key="6">
-            Team 1
-          </a-menu-item>
-          <a-menu-item key="8">
-            Team 2
-          </a-menu-item>
+          <span slot="title"
+            ><a-icon type="team" /><router-link to="Orders" class="home"
+              >订单</router-link
+            ></span
+          >
         </a-sub-menu>
         <a-sub-menu key="sub5">
           <span slot="title"><a-icon type="team" /><span>优惠劵</span></span>
