@@ -27,7 +27,7 @@
          
         </a-sub-menu>
         <a-sub-menu key="sub3">
-          <span slot="title"><a-icon type="team" /><span>商品</span></span>
+          <span slot="title"><a-icon type="shopping" /><span>商品</span></span>
           <a-menu-item key="/info/commoditylist">
             商品信息
           </a-menu-item>
