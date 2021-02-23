@@ -14,13 +14,13 @@
         </a-menu-item>
         <a-sub-menu key="sub1">
           <span slot="title"><a-icon type="admin" /><span>admin</span></span>
-           <a-menu-item key="/admin/adminList">
+          <a-menu-item key="">
             管理员列表
           </a-menu-item>
-          <a-menu-item key="/admin/addAdmin">
+          <a-menu-item key="">
             新增管理员
-          <span slot="title"><a-icon type="shop" /><span>admin</span></span>
-           <a-menu-item key="">
+          </a-menu-item>
+          <a-menu-item key="">
             新增
           </a-menu-item>
           <a-menu-item key="">
@@ -29,7 +29,7 @@
         </a-sub-menu>
         <a-sub-menu key="sub2">
           <span slot="title"><a-icon type="shop" /><span>店铺</span></span>
-           <a-menu-item key="">
+          <a-menu-item key="">
             新增店铺
           </a-menu-item>
           <a-menu-item key="">
@@ -46,19 +46,18 @@
           </a-menu-item>
         </a-sub-menu>
         <a-sub-menu key="sub4">
-          <span slot="title"
-            ><a-icon type="team" /><router-link to="Orders" class="home"
-              >订单</router-link
-            ></span
-          >
+          <span slot="title"><a-icon type="team" /><span>订单</span></span>
+          <a-menu-item key="/info/ordersList">
+            订单列表
+          </a-menu-item>
         </a-sub-menu>
         <a-sub-menu key="sub5">
           <span slot="title"><a-icon type="team" /><span>优惠劵</span></span>
           <a-menu-item key="/info/couponslist">
-           优惠券信息
+            优惠券信息
           </a-menu-item>
           <a-menu-item key="/info/addcoupons">
-           新增优惠券
+            新增优惠券
           </a-menu-item>
         </a-sub-menu>
       </a-menu>
