@@ -12,6 +12,7 @@
           <a-icon type="pie-chart" />
           <span>用户管理</span>
         </a-menu-item>
+        
         <a-sub-menu key="sub1">
           <span slot="title"><a-icon type="admin" /><span>管理员</span></span>
           <a-menu-item key="/info/adminList">
@@ -49,10 +50,10 @@
         <a-sub-menu key="sub5">
           <span slot="title"><a-icon type="team" /><span>优惠劵</span></span>
           <a-menu-item key="/info/couponslist">
-           优惠券信息
+            优惠券信息
           </a-menu-item>
           <a-menu-item key="/info/addcoupons">
-           新增优惠券
+            新增优惠券
           </a-menu-item>
         </a-sub-menu>
       </a-menu>

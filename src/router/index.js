@@ -2,7 +2,7 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import Info from "../views/info.vue";
 
-import Login from "../views/admin.vue";
+import Login from "../views/admin/admin.vue";
 import admin from "./admin";
 import commodityRouter from "./commodity";
 import couponsRouter from "./coupons";

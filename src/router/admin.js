@@ -1,5 +1,6 @@
 import Admin from "../components/admin/adminList.vue";
 import AddAdmin from "../components/admin/addAdmin.vue";
+import UpdateAdmin from "../components/admin/updateAdmin.vue";
 
 const routes = [
   {
@@ -11,6 +12,11 @@ const routes = [
     path: "addAdmin",
     name: "addAdmin",
     component: AddAdmin,
+  },
+  {
+    path: "updateAdmin/:_id",
+    name: "updateAdmin",
+    component: UpdateAdmin,
   },
 ];
 

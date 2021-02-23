@@ -18,6 +18,27 @@ export default {
       })
       .then((response) => response.data)
       .catch(console.log),
+  // 查询全部
+  get: ({ curPage = 1, eachPage = 10 } = {}) =>
+    axios
+      .get("api/admin/get", {
+        params: {
+          curPage,
+          eachPage,
+        },
+      })
+      .then(function(response) {
+        return response.data;
+      }),
+  // 查一个
+  find: async ({ _id } = {}) => {
+    const { data } = await axios.get("/api/admin/find", {
+      params: {
+        _id,
+      },
+    });
+    return data;
+  },
 
   //保存数据
   setToken: (token) => (localStorage[".t"] = token),
