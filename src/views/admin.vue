@@ -1,6 +1,6 @@
 <template>
   <a-card hoverable style="width: 400px; height: 300px; margin:auto;">
-    <h3>新增管理员</h3>
+    <h3>登录界面</h3>
     <a-form
       id="components-form-demo-normal-login"
       :form="form"
@@ -54,7 +54,7 @@
           Forgot password
         </a>
         <a-button type="primary" html-type="submit" class="login-form-button">
-          新增
+          登录
         </a-button>
       </a-form-item>
     </a-form>
@@ -70,19 +70,20 @@ export default {
     this.form = this.$form.createForm(this, { name: "normal_login" });
   },
   methods: {
-    ...mapActions(["addAdmin"]),
+    ...mapActions(["logining"]),
 
     handleSubmit(e) {
       e.preventDefault();
       this.form.validateFields(async (err, values) => {
         const { adminName, adminPassword } = values;
-        const data = await this.addAdmin({ adminName, adminPassword });
+        const data = await this.logining({ adminName, adminPassword });
+        console.log(data);
         if (data) {
-          alert("注册成功");
+          alert("登录成功");
           this.$router.history.push("/info");
         } else {
-          alert("注册失败");
-          this.$router.history.push("/info/addAdmin");
+          alert("登录失败");
+          this.$router.history.push("/");
         }
       });
     },
