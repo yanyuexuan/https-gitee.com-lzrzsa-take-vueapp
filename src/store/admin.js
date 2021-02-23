@@ -1,13 +1,15 @@
-import Vue from "vue";
-import Vuex from "vuex";
+import adminApi from "../api/admin";
 
-Vue.use(Vuex);
-
-export default new Vuex.Store({
+export default {
   // 状态
   state: {},
   // 方法
   mutations: {},
   // 异步请求
-  actions: {},
-});
+  actions: {
+    reg: async (context, admin) => {
+      const success = await adminApi.reg(admin);
+      console.log(success);
+    },
+  },
+};

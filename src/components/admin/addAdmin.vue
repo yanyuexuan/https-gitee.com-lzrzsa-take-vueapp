@@ -1,5 +1,6 @@
 <template>
   <a-card hoverable style="width: 400px; height: 300px; margin:auto;">
+    <h3>新增管理员</h3>
     <a-form
       id="components-form-demo-normal-login"
       :form="form"
@@ -9,7 +10,7 @@
       <a-form-item>
         <a-input
           v-decorator="[
-            'userName',
+            'adminName',
             {
               rules: [
                 { required: true, message: 'Please input your username!' },
@@ -24,7 +25,7 @@
       <a-form-item>
         <a-input
           v-decorator="[
-            'passWord',
+            'adminPassword',
             {
               rules: [
                 { required: true, message: 'Please input your Password!' },
@@ -61,17 +62,22 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
+
 export default {
   beforeCreate() {
     this.form = this.$form.createForm(this, { name: "normal_login" });
   },
   methods: {
+    ...mapActions(["reg"]),
+
     handleSubmit(e) {
       e.preventDefault();
-      this.form.validateFields((err, values) => {
+      this.form.validateFields(async (err, values) => {
         console.log(values);
-        const { userName, passWord } = values;
-        console.log(userName, passWord);
+        const { adminName, adminPassword } = values;
+        const data = await this.reg({ adminName, adminPassword });
+        console.log(data);
       });
     },
   },
@@ -87,5 +93,9 @@ export default {
 }
 #components-form-demo-normal-login .login-form-button {
   width: 100%;
+}
+
+h3 {
+  text-align: center;
 }
 </style>

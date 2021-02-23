@@ -13,23 +13,17 @@
           <span>用户管理</span>
         </a-menu-item>
         <a-sub-menu key="sub1">
-          <span slot="title"><a-icon type="admin" /><span>admin</span></span>
-           <a-menu-item key="/admin/adminList">
+          <span slot="title"><a-icon type="admin" /><span>管理员</span></span>
+          <a-menu-item key="/info/adminList">
             管理员列表
           </a-menu-item>
-          <a-menu-item key="/admin/addAdmin">
+          <a-menu-item key="/info/addAdmin">
             新增管理员
-          <span slot="title"><a-icon type="shop" /><span>admin</span></span>
-           <a-menu-item key="">
-            新增
-          </a-menu-item>
-          <a-menu-item key="">
-            所有
           </a-menu-item>
         </a-sub-menu>
         <a-sub-menu key="sub2">
           <span slot="title"><a-icon type="shop" /><span>店铺</span></span>
-           <a-menu-item key="">
+          <a-menu-item key="">
             新增店铺
           </a-menu-item>
           <a-menu-item key="">
@@ -57,10 +51,10 @@
         <a-sub-menu key="sub5">
           <span slot="title"><a-icon type="team" /><span>优惠劵</span></span>
           <a-menu-item key="1">
-           新增
+            新增
           </a-menu-item>
           <a-menu-item key="2">
-           查询
+            查询
           </a-menu-item>
           <a-menu-item key="6">
             修改
@@ -97,14 +91,14 @@
 export default {
   data() {
     return {
-      collapsed: false
+      collapsed: false,
     };
   },
   methods: {
     handleClick({ key }) {
       this.$router.push({ path: `${key}` });
-    }
-  }
+    },
+  },
 };
 </script>
 
