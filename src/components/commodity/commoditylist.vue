@@ -113,7 +113,6 @@ export default {
       console.log(key);
         this.visible = true;
     },
-    
     ...mapActions(["get", "del"]),
   },
   computed: {

@@ -1,20 +1,20 @@
 import axios from "axios";
 
 export default {
-  login: ({ userName, passWord } = {}) =>
+  login: ({ adminName, adminPassword } = {}) =>
     axios
-      .post("/api/users/login", {
-        userName,
-        passWord,
+      .post("/api/admin/login", {
+        adminName,
+        adminPassword,
       })
       .then((response) => response.data)
       .catch(console.log),
 
-  reg: ({ userName, passWord } = {}) =>
+  add: ({ adminName, adminPassword } = {}) =>
     axios
-      .post("/api/admin/addAdmin", {
-        userName,
-        passWord,
+      .post("/api/admin/add", {
+        adminName,
+        adminPassword,
       })
       .then((response) => response.data)
       .catch(console.log),
