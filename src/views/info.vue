@@ -17,9 +17,9 @@
           <a-menu-item key="/admin/adminList">
             管理员列表
           </a-menu-item>
-          <a-menu-item key="/admin/addAdmin">
+          <a-menu-item key="">
             新增管理员
-          </a-menu-item>
+            </a-menu-item>
           <span slot="title"><a-icon type="shop" /><span>admin</span></span>
           <a-menu-item key="">
             新增
@@ -47,11 +47,10 @@
           </a-menu-item>
         </a-sub-menu>
         <a-sub-menu key="sub4">
-          <span slot="title"
-            ><a-icon type="team" /><router-link to="Orders" class="home"
-              >订单</router-link
-            ></span
-          >
+          <span slot="title"><a-icon type="team" /><span>订单</span></span>
+          <a-menu-item key="/info/ordersList">
+            订单列表
+          </a-menu-item>
         </a-sub-menu>
         <a-sub-menu key="sub5">
           <span slot="title"><a-icon type="team" /><span>优惠劵</span></span>

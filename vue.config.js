@@ -7,12 +7,20 @@ module.exports = {
         changeOrigin: true, // needed for virtual hosted sites 需要虚拟主机站点
         pathRewrite: {
           // 重写路径
-          "^/api": "/" // rewrite path
+          "^/api": "/", // rewrite path
         },
         "/foo": {
-          target: "<other_url>"
-        }
-      }
-    }
-  }
+          target: "<other_url>",
+        },
+      },
+      "/img": {
+        target: "http://localhost:3002", // target host 主机地址
+        changeOrigin: true, // needed for virtual hosted sites 需要虚拟主机站点
+        pathRewrite: {
+          // 重写路径
+          "^/img": "/", // rewrite path
+        },
+      },
+    },
+  },
 };

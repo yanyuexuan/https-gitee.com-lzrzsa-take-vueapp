@@ -18,11 +18,11 @@ export default {
     });
     return data;
   },
-  addcommodity: async (student) => {
+  addcommodity: async (commodity) => {
     const { data } = await axios({
       method: "post",
       url: "/api/commodity/add",
-      data: student,
+      data: commodity,
     });
 
     return data;
@@ -34,6 +34,13 @@ export default {
       data: student,
     });
 
+    return data;
+  },
+  //删除上传图片
+  delimgs: async (img) => {
+    const { data } = await axios.delete("img/commodity/", {
+      data: img
+    });
     return data;
   },
 };

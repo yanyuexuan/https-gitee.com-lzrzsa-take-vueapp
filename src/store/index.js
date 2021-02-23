@@ -2,6 +2,7 @@ import Vue from "vue";
 import Vuex from "vuex";
 import commodity from "./commodity";
 import admin from "./admin.js";
+import orders from "./orders.js";
 
 import shops from "./shops.js";
 
@@ -12,6 +13,7 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   // 全局的状态
+
   state: {},
   // 全局的方法
   mutations: {},
@@ -21,7 +23,8 @@ export default new Vuex.Store({
     commodity,
     admin,
     shops,
-    coupons
+    coupons,
+    orders
   }
 
   

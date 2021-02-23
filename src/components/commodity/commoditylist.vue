@@ -8,12 +8,14 @@
       :rowKey="(record, index) => record._id"
     >
       <template slot="action" slot-scope="text, record">
-        <a
-          style="color:red;margin-right:10px"
-          href="javascript:;"
-          @click="() => del(record)"
-          >删除</a
+        <a-popconfirm
+          v-if="rows.length"
+          title="Sure to delete?"
+          @confirm="() => del_commodity(record._id)"
         >
+          <a style="color: red; margin-right: 10px" href="javascript:;">删除</a>
+        </a-popconfirm>
+
         <a href="javascript:;" @click="() => edit(record)">修改</a>
       </template>
       <span slot="tags" slot-scope="tags">
@@ -29,7 +31,9 @@
       </span>
     </a-table>
     <a-pagination :total="total" show-size-changer show-quick-jumper />
+    <CommodityUpdatacommodity :visible="visible"/>
   </div>
+  
 </template>
 
 <script>
@@ -39,6 +43,7 @@ const { mapState, mapActions } = createNamespacedHelpers("commodity");
 export default {
   data() {
     return {
+        visible: false,
       data: [],
       columns: [
         {
@@ -94,18 +99,21 @@ export default {
       ],
     };
   },
+  watch: {},
   methods: {
     onChange(pagination, filters, sorter) {
       console.log(pagination, filters, sorter);
       this.get(filters);
     },
-    del(key) {
-      console.log(key);
+    del_commodity(_id) {
+      this.del(_id);
+      this.get();
     },
     edit(key) {
       console.log(key);
+        this.visible = true;
     },
-    ...mapActions(["get"]),
+    ...mapActions(["get", "del"]),
   },
   computed: {
     ...mapState(["maxpage", "total", "rows"]),

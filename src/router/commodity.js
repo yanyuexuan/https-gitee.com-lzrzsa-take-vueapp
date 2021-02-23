@@ -1,5 +1,6 @@
 import CommodityList from "../components/commodity/commoditylist.vue";
 import AddCommodity from "../components/commodity/addcommodity.vue";
+import Upload from "../components/commodity/upload.vue";
 
 const routes = [
   {
@@ -11,6 +12,11 @@ const routes = [
     path: "addcommodity",
     name: "addcommodity",
     component: AddCommodity,
+  },
+  {
+    path: "upload/:_id",
+    name: "upload",
+    component: Upload,
   },
 ];
 
