@@ -7,9 +7,14 @@
       @change="onChange"
       :rowKey="(record, index) => record._id"
     >
-    <template slot="action" slot-scope="text,record">
-      <a style="color:red;margin-right:10px"   href="javascript:;" @click="()=>del(record)">删除</a>
-      <a  href="javascript:;" @click="()=>edit(record)">修改</a>
+      <template slot="action" slot-scope="text, record">
+        <a
+          style="color:red;margin-right:10px"
+          href="javascript:;"
+          @click="() => del(record)"
+          >删除</a
+        >
+        <a href="javascript:;" @click="() => edit(record)">修改</a>
       </template>
       <span slot="tags" slot-scope="tags">
         <a-tag
@@ -30,7 +35,6 @@
 <script>
 import { createNamespacedHelpers } from "vuex";
 const { mapState, mapActions } = createNamespacedHelpers("commodity");
-
 
 export default {
   data() {
@@ -92,15 +96,15 @@ export default {
   },
   methods: {
     onChange(pagination, filters, sorter) {
-        console.log(pagination, filters, sorter);
-  this.get(filters)
-},
-del(key){
-console.log(key);
-},
-edit(key){
-console.log(key);
-},
+      console.log(pagination, filters, sorter);
+      this.get(filters);
+    },
+    del(key) {
+      console.log(key);
+    },
+    edit(key) {
+      console.log(key);
+    },
     ...mapActions(["get"]),
   },
   computed: {
@@ -125,6 +129,5 @@ console.log(key);
 <style lang="css" scoped>
 #components-pagination-demo-mini .ant-pagination:not(:last-child) {
   margin-bottom: 24px;
-  
 }
 </style>
