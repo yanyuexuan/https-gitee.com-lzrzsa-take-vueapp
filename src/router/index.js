@@ -6,6 +6,7 @@ import AddAdmin from "../components/admin/addAdmin.vue";
 import commodityRouter from "./commodity";
 import couponsRouter from "./coupons";
 import shopsRouter from "./shops";
+
 Vue.use(VueRouter);
 
 const routes = [
@@ -23,7 +24,17 @@ const routes = [
     path: "/info",
     name: "info",
     component: Info,
-    children: [...commodityRouter, ...couponsRouter, ...shopsRouter]
+
+    children: [...commodityRouter, ...couponsRouter, ...shopsRouter],
+
+    // children: [
+    //   {
+    //     path: "/orders",
+    //     name: "Orders",
+    //     component: () => import("../components/orders/orders.vue")
+    //   },...commodityRouter,...couponsRouter
+    // ]
+
   }
 ];
 
