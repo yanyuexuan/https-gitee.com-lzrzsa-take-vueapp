@@ -48,7 +48,9 @@
 
 <script>
 import { createNamespacedHelpers } from "vuex";
+import dateUtils  from "../../untils/dateUtils"
 const {mapActions} = createNamespacedHelpers("coupons");
+
 export default {
   data() {
     return {
@@ -81,7 +83,7 @@ export default {
        e.preventDefault();
         this.form.validateFieldsAndScroll((err, values) => {
             const {coupon_type,coupon_Name,discount_Amount,status,time}=values
-           this.add({coupon_type,coupon_Name,discount_Amount,status,time_start:time[0]._d,time_end:time[1]._d})
+           this.add({coupon_type,coupon_Name,discount_Amount,status,time_start:dateUtils.time(time[0]._d),time_end:dateUtils.time(time[1]._d)})
         });
     },
   },
