@@ -14,20 +14,13 @@
         </a-menu-item>
         
         <a-sub-menu key="sub1">
-          <span slot="title"><a-icon type="admin" /><span>admin</span></span>
+          <span slot="title"><a-icon type="admin" /><span>管理员</span></span>
           <a-menu-item key="/admin/adminList">
             管理员列表
           </a-menu-item>
           <a-menu-item key="">
             新增管理员
             </a-menu-item>
-          <span slot="title"><a-icon type="shop" /><span>admin</span></span>
-          <a-menu-item key="">
-            新增
-          </a-menu-item>
-          <a-menu-item key="">
-            所有
-          </a-menu-item>
         </a-sub-menu>
         <a-sub-menu key="sub2">
           <span slot="title"><a-icon type="shop" /><span>店铺</span></span>
