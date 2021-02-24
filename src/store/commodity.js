@@ -21,6 +21,7 @@ export default {
     get: async ({ state, commit }) => {
       const { curpage, eachpage } = state;
       const data = await commodityApi.get({ curpage, eachpage });
+      
       commit("update", data);
     },
     add: async (context, payload) => {
@@ -31,7 +32,7 @@ export default {
     del: async (context, payload) => {
       const data = await commodityApi.delete(payload);
 
-      console.log(data);
+      
       return data;
     },
     delimgs: async (context, payload) => {
@@ -40,9 +41,20 @@ export default {
       return data;
     },
     updatacommodity: async (context, payload) => {
-        
       const data = await commodityApi.updatacommodity(payload);
       console.log(data);
+    },
+    get_listName: async ({ state,commit }, payload) => {
+      const { curpage, eachpage } = state;
+      const query = payload;
+      const data = await commodityApi.get_listName({
+        curpage,
+        eachpage,
+        query,
+      });
+      commit("update", data);
+      
+      return data;
     },
   },
 
