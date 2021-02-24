@@ -13,21 +13,23 @@ export default {
         return response.data;
       }),
   // 修改订单状态
-  updateStatus: ({ _id, status }) =>
+  updateStatus: ({ _id, status, opinion_type,time=""}) =>
     axios
       .patch("/api/orders/updateStatus", {
         _id,
-        status
+        status,
+        opinion_type,
+        time
       })
       .then(function(response) {
         return response.data;
       }),
   // 通过用户名查询订单
-  getUsername: ({ users_num }) =>
+  getUsername: ({ adminName }) =>
     axios
       .get("/api/orders/getUsername", {
         params: {
-          users_num 
+          adminName
         }
       })
       .then(function(response) {
