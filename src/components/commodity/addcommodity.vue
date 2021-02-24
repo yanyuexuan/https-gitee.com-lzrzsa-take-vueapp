@@ -11,19 +11,21 @@
       </a-form-item>
       <a-form-item label="商品分类">
         <a-select
+          mode="tags"
+          :token-separators="[',']"
           v-decorator="[
             'listName',
             {
-              rules: [
-                { required: true, message: 'Please select your listName!' },
-              ],
+              rules: [{ required: true, message: 'Please 输入商品分类' }],
             },
           ]"
-          placeholder="Select a option and change input text above"
-          @change="handleSelectChange"
+          placeholder=" 商品分类"
         >
-          <a-select-option value="male"> male </a-select-option>
-          <a-select-option value="female"> female </a-select-option>
+          <a-select-option v-for="item in listName" :key="item">
+            {{ item }}
+          </a-select-option>
+
+          <!-- <a-select-option value="female"> female </a-select-option> -->
         </a-select>
       </a-form-item>
       <a-form-item label="价格">
@@ -76,13 +78,14 @@ export default {
   data() {
     return {
       formLayout: "horizontal",
+      listName: ["奈雪早餐", "新品推荐", "招牌热卖", "咖啡", "霸气芝士鲜果茶"],
       addstate: true,
       form: this.$form.createForm(this, { name: "coordinated" }),
-      temperature: ["标准冰", "去冰"],
+      temperature: ["标准冰", "去冰","热","温"],
       sweetness: ["标准糖", "少糖", "不另外加糖"],
     };
   },
-  mounted() {},
+  
   methods: {
     ...mapActions("commodity", ["add"]),
     handleSubmit(e) {
@@ -90,19 +93,22 @@ export default {
       let _this = this;
       this.form.validateFields(async (err, values) => {
         if (!err) {
+            
           const data = await this.add(values);
-          if (data!=null) {
+          if (data != null) {
             this.$confirm({
               title: "是否需要上传商品图片",
               onOk() {
-                _this.$router.push({ name: 'upload', params: { _id: data._id }});
+                _this.$router.push({
+                  name: "upload",
+                  params: { _id: data._id },
+                });
               },
               onCancel() {},
             });
           }
         }
       });
-
     },
     handleSelectChange(value) {
       console.log(value);

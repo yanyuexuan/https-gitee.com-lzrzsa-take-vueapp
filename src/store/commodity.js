@@ -39,6 +39,11 @@ export default {
 
       return data;
     },
+    updatacommodity: async (context, payload) => {
+        
+      const data = await commodityApi.updatacommodity(payload);
+      console.log(data);
+    },
   },
 
   modules: {},

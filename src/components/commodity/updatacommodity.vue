@@ -1,141 +1,78 @@
 <template>
   <div>
     <a-drawer
-      title="Create a new account"
+      title="修改商品"
       :width="720"
       :visible="visible"
       :body-style="{ paddingBottom: '80px' }"
       @close="onClose"
     >
-      <a-form :form="form" layout="vertical" hide-required-mark>
-        <a-row :gutter="16">
-          <a-col :span="12">
-            <a-form-item label="Name">
-              <a-input
-                v-decorator="[
-                  'name',
-                  {
-                    rules: [
-                      { required: true, message: 'Please enter user name' },
-                    ],
-                  },
-                ]"
-                placeholder="Please enter user name"
-              />
-            </a-form-item>
-          </a-col>
-          <a-col :span="12">
-            <a-form-item label="Url">
-              <a-input
-                v-decorator="[
-                  'url',
-                  {
-                    rules: [{ required: true, message: 'please enter url' }],
-                  },
-                ]"
-                style="width: 100%"
-                addon-before="http://"
-                addon-after=".com"
-                placeholder="please enter url"
-              />
-            </a-form-item>
-          </a-col>
-        </a-row>
-        <a-row :gutter="16">
-          <a-col :span="12">
-            <a-form-item label="Owner">
-              <a-select
-                v-decorator="[
-                  'owner',
-                  {
-                    rules: [
-                      { required: true, message: 'Please select an owner' },
-                    ],
-                  },
-                ]"
-                placeholder="Please a-s an owner"
-              >
-                <a-select-option value="xiao"> Xiaoxiao Fu </a-select-option>
-                <a-select-option value="mao"> Maomao Zhou </a-select-option>
-              </a-select>
-            </a-form-item>
-          </a-col>
-          <a-col :span="12">
-            <a-form-item label="Type">
-              <a-select
-                v-decorator="[
-                  'type',
-                  {
-                    rules: [
-                      { required: true, message: 'Please choose the type' },
-                    ],
-                  },
-                ]"
-                placeholder="Please choose the type"
-              >
-                <a-select-option value="private"> Private </a-select-option>
-                <a-select-option value="public"> Public </a-select-option>
-              </a-select>
-            </a-form-item>
-          </a-col>
-        </a-row>
-        <a-row :gutter="16">
-          <a-col :span="12">
-            <a-form-item label="Approver">
-              <a-select
-                v-decorator="[
-                  'approver',
-                  {
-                    rules: [
-                      { required: true, message: 'Please choose the approver' },
-                    ],
-                  },
-                ]"
-                placeholder="Please choose the approver"
-              >
-                <a-select-option value="jack"> Jack Ma </a-select-option>
-                <a-select-option value="tom"> Tom Liu </a-select-option>
-              </a-select>
-            </a-form-item>
-          </a-col>
-          <a-col :span="12">
-            <a-form-item label="DateTime">
-              <a-date-picker
-                v-decorator="[
-                  'dateTime',
-                  {
-                    rules: [
-                      { required: true, message: 'Please choose the dateTime' },
-                    ],
-                  },
-                ]"
-                style="width: 100%"
-                :get-popup-container="(trigger) => trigger.parentNode"
-              />
-            </a-form-item>
-          </a-col>
-        </a-row>
-        <a-row :gutter="16">
-          <a-col :span="24">
-            <a-form-item label="Description">
-              <a-textarea
-                v-decorator="[
-                  'description',
-                  {
-                    rules: [
-                      {
-                        required: true,
-                        message: 'Please enter url description',
-                      },
-                    ],
-                  },
-                ]"
-                :rows="4"
-                placeholder="please enter url description"
-              />
-            </a-form-item>
-          </a-col>
-        </a-row>
+      <a-form :form="form" :label-col="{ span: 5 }" :wrapper-col="{ span: 12 }">
+        <a-form-item label="商品名称">
+          <a-input placeholder="请输入商品名称" v-decorator="['name']" />
+        </a-form-item>
+        <a-form-item label="商品分类">
+        <a-select
+          mode="tags"
+          :token-separators="[',']"
+          v-decorator="[
+            'listName',
+            {
+              rules: [{ required: true, message: 'Please 输入商品分类' }],
+            },
+          ]"
+          placeholder=" 商品分类"
+        >
+          <a-select-option v-for="item in listName" :key="item">
+            {{ item }}
+          </a-select-option>
+
+          <!-- <a-select-option value="female"> female </a-select-option> -->
+        </a-select>
+      </a-form-item>
+        <a-form-item label="价格">
+          <a-input prefix="￥" suffix="RMB" v-decorator="['price']" />
+        </a-form-item>
+        <a-form-item label="描述内容">
+          <a-textarea
+            placeholder="描述商品内容"
+            auto-size
+            v-decorator="['content']"
+          />
+        </a-form-item>
+        <a-form-item label="是否上架">
+          <a-switch v-decorator="['type', { valuePropName: 'checked' }]" />
+        </a-form-item>
+        <a-form-item label="商品温度">
+          <a-select
+            mode="tags"
+            style="width: 100%"
+            :token-separators="[',']"
+            v-decorator="['temperature']"
+          >
+            <a-select-option v-for="i in temperature" :key="i">
+              {{ i }}
+            </a-select-option>
+          </a-select>
+        </a-form-item>
+        <a-form-item label="商品甜度">
+          <a-select
+            mode="tags"
+            style="width: 100%"
+            :token-separators="[',']"
+            v-decorator="['sweetness']"
+          >
+            <a-select-option v-for="i in sweetness" :key="i">
+              {{ i }}
+            </a-select-option>
+          </a-select>
+        </a-form-item>
+        <a-form-item label="商品图片">
+          <CommodityUppload
+            :commodity="commodity"
+            :state="state"
+          />
+        </a-form-item>
       </a-form>
       <div
         :style="{
@@ -153,29 +90,73 @@
         <a-button :style="{ marginRight: '8px' }" @click="onClose">
           Cancel
         </a-button>
-        <a-button type="primary" @click="onClose"> Submit </a-button>
+        <a-button type="primary" @click="updata"> Submit </a-button>
       </div>
     </a-drawer>
   </div>
 </template>
 <script>
+import { mapActions } from "vuex";
 export default {
   props: {
     visible: {
       default: false,
     },
+    commodity: {
+      default: {},
+    },
   },
+  watch: {
+    visible: function () {
+      this.state = !this.state;
+   
+     
 
+      for (let item in this.data) {
+        this.data[item] = this.$props.commodity[item];
+      }
+
+      this.$nextTick(() => {
+        this.form.setFieldsValue(this.data);
+      });
+    },
+  },
   data() {
     return {
-      form: this.$form.createForm(this),
       
+      listName: ["奈雪早餐", "新品推荐", "招牌热卖", "咖啡", "霸气芝士鲜果茶"],
+      state: false,
+      form: this.$form.createForm(this),
+      temperature: ["标准冰", "去冰","热","温"],
+      sweetness: ["标准糖", "少糖", "不另外加糖"],
+      data: {
+        name: "",
+        listName: "",
+        price: "",
+        type: "",
+        temperature: "",
+        sweetness: "",
+        content: "",
+      },
     };
   },
+
   methods: {
-    
+    ...mapActions("commodity", ["updatacommodity", "get"]),
+
+    updata() {
+      
+      const data = {
+        _id: this.$props.commodity._id,
+        commodity: this.form.getFieldsValue(),
+      };
+      this.updatacommodity(data);
+      this.get();
+      this.$emit("showDrawer");
+    },
+
     onClose() {
-      this.$props.visible = false;
+      this.$emit("showDrawer");
     },
   },
 };
