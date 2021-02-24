@@ -3,6 +3,7 @@ import Vuex from "vuex";
 import commodity from "./commodity";
 import admin from "./admin.js";
 import orders from "./orders.js";
+import users from "./users.js";
 
 import shops from "./shops.js";
 
@@ -24,7 +25,8 @@ export default new Vuex.Store({
     admin,
     shops,
     coupons,
-    orders
+    orders,
+    users
   }
 
   

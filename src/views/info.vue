@@ -23,9 +23,6 @@
           <a-menu-item key="/info/usersList">
             用户列表
           </a-menu-item>
-          <a-menu-item key="/info/addAdmin">
-            新增用户
-          </a-menu-item>
         </a-sub-menu>
 
         <a-sub-menu key="sub2">
