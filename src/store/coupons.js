@@ -17,6 +17,7 @@ export default {
         get: async ({state,commit}) => {
             const {curPage,eachPage} = state
             const data = await couponsApi.get({curPage,eachPage})
+           
             commit("updata", data)
         },
         //新增
