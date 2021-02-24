@@ -1,7 +1,10 @@
 <template>
   <a-card hoverable style="width: 400px; height: 300px; margin:auto;">
-    <h3>新增管理员</h3>
-    <a-form
+    <h3>修改信息</h3>
+    <div>账号 <input v-model="data.adminName" type="text" /></div>
+    <div>密码 <input v-model="data.adminPassword" type="text" /></div>
+    <button @click="update">修改</button>
+    <!-- <a-form
       id="components-form-demo-normal-login"
       :form="form"
       class="login-form"
@@ -40,10 +43,10 @@
       </a-form-item>
       <a-form-item>
         <a-button type="primary" html-type="submit" class="login-form-button">
-          新增
+          修改
         </a-button>
       </a-form-item>
-    </a-form>
+    </a-form> -->
   </a-card>
 </template>
 
@@ -52,25 +55,51 @@ import { createNamespacedHelpers } from "vuex";
 const { mapActions } = createNamespacedHelpers("admin");
 
 export default {
+  data() {
+    return {
+      data: {},
+    };
+  },
+
   beforeCreate() {
     this.form = this.$form.createForm(this, { name: "normal_login" });
   },
+
+//   created() {
+//     console.log(this.$route.params._id);
+//   },
+
+  async mounted() {
+    const data = await this.find(this.$route.params);
+    this.data = data;
+  },
+
   methods: {
-    ...mapActions(["addAdmin"]),
+    ...mapActions(["find", "updateAdmin"]),
+
+    // 修改
+    update: async function() { 
+      const {_id, adminName, adminPassword } = this.data;
+      const data = await this.updateAdmin({_id, adminName, adminPassword });
+      if (data) {
+        alert("修改成功");
+        this.$router.history.push("/info/adminList");
+      }
+    },
 
     handleSubmit(e) {
       e.preventDefault();
-      this.form.validateFields(async (err, values) => {
-        const { adminName, adminPassword } = values;
-        const data = await this.addAdmin({ adminName, adminPassword });
-        if (data) {
-          alert("注册成功");
-          this.$router.history.push("/info/adminList");
-        } else {
-          alert("注册失败");
-          this.$router.history.push("/info/addAdmin");
-        }
-      });
+      //   this.form.validateFields(async (err, values) => {
+      //     const { adminName, adminPassword } = values;
+      //     const data = await this.addAdmin({ adminName, adminPassword });
+      //     if (data) {
+      //       alert("注册成功");
+      //       this.$router.history.push("/info");
+      //     } else {
+      //       alert("注册失败");
+      //       this.$router.history.push("/info/addAdmin");
+      //     }
+      //   });
     },
   },
 };
