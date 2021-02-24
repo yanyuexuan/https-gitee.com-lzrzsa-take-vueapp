@@ -39,20 +39,6 @@
         </a-input>
       </a-form-item>
       <a-form-item>
-        <a-checkbox
-          v-decorator="[
-            'remember',
-            {
-              valuePropName: 'checked',
-              initialValue: true,
-            },
-          ]"
-        >
-          Remember me
-        </a-checkbox>
-        <a class="login-form-forgot" href="">
-          Forgot password
-        </a>
         <a-button type="primary" html-type="submit" class="login-form-button">
           新增
         </a-button>
@@ -79,7 +65,7 @@ export default {
         const data = await this.addAdmin({ adminName, adminPassword });
         if (data) {
           alert("注册成功");
-          this.$router.history.push("/info");
+          this.$router.history.push("/info/adminList");
         } else {
           alert("注册失败");
           this.$router.history.push("/info/addAdmin");

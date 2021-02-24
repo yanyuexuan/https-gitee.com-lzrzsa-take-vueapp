@@ -15,10 +15,10 @@
         
         <a-sub-menu key="sub1">
           <span slot="title"><a-icon type="admin" /><span>管理员</span></span>
-          <a-menu-item key="/admin/adminList">
+          <a-menu-item key="/info/adminList">
             管理员列表
           </a-menu-item>
-          <a-menu-item key="">
+          <a-menu-item key="/info/addAdmin">
             新增管理员
             </a-menu-item>
         </a-sub-menu>
