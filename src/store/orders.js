@@ -38,12 +38,27 @@ export default {
     }, 200),
     // 修改订单状态
     updateStatus: async ({ commit }, { _id, status }) => {
-      const data = await OrdersApi.updateStatus({ _id, status });
-      commit("UpdateStatus", data);
+      if (status != "已完成") {
+        const data = await OrdersApi.updateStatus({
+          _id,
+          status,
+          opinion_type: "false"
+        });
+        commit("UpdateStatus", data);
+      } else {
+        const time = moment().format();
+        const data = await OrdersApi.updateStatus({
+          _id,
+          status,
+          opinion_type: "true",
+          time
+        });
+        commit("UpdateStatus", data);
+      }
     },
     // 通过用户名查询订单
-    getUsername: async ({ commit }, { users_num }) => {
-      const data = await OrdersApi.getUsername({ users_num });
+    getUsername: async ({ commit }, { adminName }) => {
+      const data = await OrdersApi.getUsername({ adminName });
       commit("updateRows", data);
     }
   }

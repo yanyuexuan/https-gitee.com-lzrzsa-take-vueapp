@@ -1,28 +1,19 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Info from "../views/info.vue";
-import Admin from "../components/admin/adminList.vue";
-import AddAdmin from "../components/admin/addAdmin.vue";
+
+import Login from "../views/admin/admin.vue";
+import admin from "./admin";
 import commodityRouter from "./commodity";
 import couponsRouter from "./coupons";
 import ordersRouter from "./orders";
-import Login from "../views/admin.vue";
-import admin from "./admin";
 import shopsRouter from "./shops";
+import users from "./users";
 
 Vue.use(VueRouter);
 
 const routes = [
-  {
-    path: "/admin/adminList",
-    name: "Admin",
-    component: Admin
-  },
-  {
-    path: "/admin/addAdmin",
-    name: "AddAdmin",
-    component: AddAdmin
-  },
+  
   {
     path: "/",
     name: "Login",
@@ -37,7 +28,8 @@ const routes = [
       ...couponsRouter,
       ...ordersRouter,
       ...admin,
-      ...shopsRouter
+      ...shopsRouter,
+      ...users
     ]
   }
 ];
