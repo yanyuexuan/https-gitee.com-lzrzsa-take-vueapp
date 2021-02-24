@@ -9,12 +9,16 @@ export default {
     address: "",
     imgs: [],
     shop_Score: "",
-    rows: []
+    rows: [],
   },
   // 方法
   mutations: {
     getdata: (state, payload) => {
       state.rows = payload;
+    },
+    changdata: (state, payload) => {
+      state.rows = payload;
+     
     }
   },
   // 异步请求
@@ -31,6 +35,16 @@ export default {
     // 删除商铺
     delShops(state, { _id }) {
       shopsApi.delShop({ _id });
+    },
+    // 修改商铺信息
+    changShops(state, { _id, cname, address, imgs, shop_Score }) {
+      shopsApi.changShop({ _id, cname, address, imgs, shop_Score });
+    },
+    // 查询
+    getShopText: async ({ commit }, { _id }) => {
+      const data = await shopsApi.getShopText({ _id });
+      console.log(data);
+      commit("changdata", data);
     }
   }
 };

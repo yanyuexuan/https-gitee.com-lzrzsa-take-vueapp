@@ -57,8 +57,8 @@ export default {
       }
     },
     // 通过用户名查询订单
-    getUsername: async ({ commit }, { users_num }) => {
-      const data = await OrdersApi.getUsername({ users_num });
+    getUsername: async ({ commit }, { adminName }) => {
+      const data = await OrdersApi.getUsername({ adminName });
       commit("updateRows", data);
     }
   }

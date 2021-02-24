@@ -30,21 +30,34 @@
         </a-tag>
       </span>
     </a-table>
-    <a-pagination :total="total" show-size-changer show-quick-jumper />
-    <CommodityUpdatacommodity :visible="visible"/>
+    <a-pagination
+      :total="total"
+      show-size-changer
+      show-quick-jumper
+      @showSizeChange="onShowSizeChange"
+      @change="current"
+      style="margin-top: 5px;"
+    />
+    <CommodityUpdatacommodity
+      @showDrawer="showDrawer"
+      :visible="visible"
+      :commodity="commodity"
+    />
   </div>
-  
 </template>
 
 <script>
 import { createNamespacedHelpers } from "vuex";
-const { mapState, mapActions } = createNamespacedHelpers("commodity");
+const { mapState, mapActions, mapMutations } = createNamespacedHelpers(
+  "commodity"
+);
 
 export default {
   data() {
     return {
-        visible: false,
+      visible: false,
       data: [],
+      commodity: {},
       columns: [
         {
           title: "商品名称",
@@ -55,14 +68,15 @@ export default {
         },
         {
           title: "商品分类",
-          dataIndex: "age",
-          key: "age",
+          dataIndex: "listName",
+          key: "listName",
           filters: [
             {
               text: "32",
               value: "32",
             },
           ],
+          scopedSlots: { customRender: "tags" },
           onFilter: (value, record) => {
             console.log(record, value);
           },
@@ -72,35 +86,48 @@ export default {
           title: "商品价格",
           dataIndex: "price",
           key: "price",
-          width: 100,
           align: "center",
         },
         {
           title: "商品温度",
           dataIndex: "temperature",
           key: "temperature",
-          width: 200,
+          width: 150,
           scopedSlots: { customRender: "tags" },
         },
         {
           title: "商品甜度",
           dataIndex: "sweetness",
           key: "sweetness",
-          width: 200,
+          width: 150,
           scopedSlots: { customRender: "tags" },
         },
 
         {
           title: "操作",
           key: "operation",
-
+          align: "center",
           scopedSlots: { customRender: "action" },
         },
       ],
     };
   },
-  watch: {},
+  watch: {
+    curpage: function () {
+      this.get();
+    },
+    eachpage: function () {
+      this.get();
+    },
+  },
   methods: {
+    ...mapMutations(["toggle_curpage", "toggle_eachpage"]),
+    onShowSizeChange(current, pageSize) {
+      this.toggle_eachpage(pageSize);
+    },
+    current(pageNumber) {
+      this.toggle_curpage(pageNumber);
+    },
     onChange(pagination, filters, sorter) {
       console.log(pagination, filters, sorter);
       this.get(filters);
@@ -110,13 +137,16 @@ export default {
       this.get();
     },
     edit(key) {
-      console.log(key);
-        this.visible = true;
+      this.commodity = key;
+      this.showDrawer();
+    },
+    showDrawer() {
+      this.visible = !this.visible;
     },
     ...mapActions(["get", "del"]),
   },
   computed: {
-    ...mapState(["maxpage", "total", "rows"]),
+    ...mapState(["maxpage", "total", "rows", "curpage", "eachpage"]),
   },
   mounted() {
     this.get();
@@ -137,5 +167,6 @@ export default {
 <style lang="css" scoped>
 #components-pagination-demo-mini .ant-pagination:not(:last-child) {
   margin-bottom: 24px;
+  
 }
 </style>
