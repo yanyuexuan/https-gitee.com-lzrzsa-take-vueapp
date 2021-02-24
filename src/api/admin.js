@@ -39,6 +39,16 @@ export default {
     });
     return data;
   },
+  // 修改
+  update:({_id, adminName, adminPassword } = {}) =>
+  axios
+    .put("/api/admin/update", {
+      _id,
+      adminName,
+      adminPassword,
+    })
+    .then((response) => response.data)
+    .catch(console.log),
 
   //保存数据
   setToken: (token) => (localStorage[".t"] = token),

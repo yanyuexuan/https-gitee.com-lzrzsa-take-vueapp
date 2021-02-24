@@ -1,8 +1,8 @@
 <template>
   <a-card hoverable style="width: 400px; height: 300px; margin:auto;">
     <h3>修改信息</h3>
-    <div>账号 <input :value="this.data.adminName" type="text" /></div>
-    <div>密码 <input :value="this.data.adminPassword" type="text" /></div>
+    <div>账号 <input v-model="data.adminName" type="text" /></div>
+    <div>密码 <input v-model="data.adminPassword" type="text" /></div>
     <button @click="update">修改</button>
     <!-- <a-form
       id="components-form-demo-normal-login"
@@ -65,22 +65,26 @@ export default {
     this.form = this.$form.createForm(this, { name: "normal_login" });
   },
 
-  created() {
-    console.log(this.$route.params._id);
-  },
+//   created() {
+//     console.log(this.$route.params._id);
+//   },
 
   async mounted() {
     const data = await this.find(this.$route.params);
-    console.log(data);
     this.data = data;
-    console.log(this.data);
   },
 
   methods: {
-    ...mapActions(["find"]),
+    ...mapActions(["find", "updateAdmin"]),
 
-    update: function() {
-      console.log(111);
+    // 修改
+    update: async function() { 
+      const {_id, adminName, adminPassword } = this.data;
+      const data = await this.updateAdmin({_id, adminName, adminPassword });
+      if (data) {
+        alert("修改成功");
+        this.$router.history.push("/info/adminList");
+      }
     },
 
     handleSubmit(e) {

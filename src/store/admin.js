@@ -41,5 +41,10 @@ export default {
       const success = await adminApi.find(admin);
       return success;
     },
+    // 修改
+    updateAdmin: async (context, admin) => {
+      const success = await adminApi.update(admin);
+      return success;
+    },
   },
 };
