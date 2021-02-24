@@ -3,8 +3,9 @@
     <div>
       <a-card
         hoverable
-        style="width: 540px;position: absolute;top:20%;left:30%; z-index: 5000;"
+        style="width: 540px; z-index: 5000;"
         :class="[disp ? 'updatadispaly' : 'updatahide']"
+        title="修改优惠券"
       >
         <a-form-item label="优惠券类型" style="display: flex;width: 440px">
           <a-input v-model="coupon_type" v-decorator="['coupon_type']" />

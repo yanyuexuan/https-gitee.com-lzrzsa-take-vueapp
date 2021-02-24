@@ -1,6 +1,10 @@
 <template>
   <div>
-    <h1>新增优惠券</h1>
+    <a-card
+        hoverable
+        style="width: 540px;position: relative;;left:20%;"
+        title="新增优惠券"
+      >
     <a-form :form="form" @submit="handleSubmit">
       <a-form-item v-bind="formItemLayout" label="优惠券类型">
         <a-input
@@ -43,6 +47,7 @@
         </a-button>
       </a-form-item>
     </a-form>
+     </a-card>
   </div>
 </template>
 
