@@ -33,14 +33,14 @@ const columns = [
     fixed: "left"
   },
   {
-    title: "商家id",
+    title: "用户名",
     width: 150,
-    dataIndex: "users_num"
+    dataIndex: "adminName"
   },
   {
-    title: "用户id",
+    title: "商家名",
     width: 150,
-    dataIndex: "shops_num"
+    dataIndex: "cname"
   },
   {
     title: "购买商品",
@@ -59,6 +59,11 @@ const columns = [
     dataIndex: "completed_time",
     width: 150
   },
+  {
+    title: "订单结束时间",
+    dataIndex: "productioned_time",
+    width: 150
+  },
   { title: "订单状态", dataIndex: "status", width: 150 },
   {
     title: "是否打包",
@@ -68,15 +73,8 @@ const columns = [
   { title: "是否使用优惠券", dataIndex: "coupons", width: 150 },
   { title: "备注", dataIndex: "remark", width: 150 },
   {
-    title: "用户评论",
-    customRender(rows) {
-      return rows.opinion.comments;
-    },
-    width: 150
-  },
-  {
-    title: "订单结束时间",
-    dataIndex: "productioned_time",
+    title: "用户是否可以评论",
+    dataIndex: "opinion_type",
     width: 150
   },
   {
@@ -110,7 +108,7 @@ export default {
       this.status = key;
     },
     onSearch(value) {
-      this.getUsername({ users_num: value });
+      this.getUsername({ adminName: value });
     }
   }
 };
