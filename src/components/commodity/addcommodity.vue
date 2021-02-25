@@ -1,6 +1,8 @@
 <template>
   <div>
-    <a-form
+    <div style="background:#ECECEC; padding:30px;width: 700px">
+    <a-card title="新增商品" :bordered="false" style="width: 600px">
+       <a-form
       :form="form"
       :label-col="{ span: 5 }"
       :wrapper-col="{ span: 12 }"
@@ -69,6 +71,9 @@
         <a-button type="primary" html-type="submit"> 提交 </a-button>
       </a-form-item>
     </a-form>
+    </a-card>
+  </div>
+   
   </div>
 </template>
 <script>
