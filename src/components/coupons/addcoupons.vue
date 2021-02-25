@@ -1,6 +1,10 @@
 <template>
   <div>
-    <h1>新增优惠券</h1>
+    <a-card
+        hoverable
+        style="width: 540px;position: relative;;left:20%;"
+        title="新增优惠券"
+      >
     <a-form :form="form" @submit="handleSubmit">
       <a-form-item v-bind="formItemLayout" label="优惠券类型">
         <a-input
@@ -43,12 +47,15 @@
         </a-button>
       </a-form-item>
     </a-form>
+     </a-card>
   </div>
 </template>
 
 <script>
 import { createNamespacedHelpers } from "vuex";
+import dateUtils  from "../../untils/dateUtils"
 const {mapActions} = createNamespacedHelpers("coupons");
+
 export default {
   data() {
     return {
@@ -81,7 +88,7 @@ export default {
        e.preventDefault();
         this.form.validateFieldsAndScroll((err, values) => {
             const {coupon_type,coupon_Name,discount_Amount,status,time}=values
-           this.add({coupon_type,coupon_Name,discount_Amount,status,time_start:time[0]._d,time_end:time[1]._d})
+           this.add({coupon_type,coupon_Name,discount_Amount,status,time_start:dateUtils.time(time[0]._d),time_end:dateUtils.time(time[1]._d)})
         });
     },
   },

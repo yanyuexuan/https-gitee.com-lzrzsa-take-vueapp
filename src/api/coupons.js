@@ -22,5 +22,11 @@ export default {
     axios.delete('/api/coupons/del_coupons',{ params:{_id }})
     .then(function (response) {
       return response.data
-    }),   
+    }), 
+  // 修改
+  upCoupons:({id,coupon_type,coupon_Name,discount_Amount,status,time_start,time_end})=>
+  axios.put('/api/coupons/updata',{_id:id,coupon_type,coupon_Name,discount_Amount,status,time_start,time_end})
+  .then(function (response) {
+    return response.data
+  }),  
 }
