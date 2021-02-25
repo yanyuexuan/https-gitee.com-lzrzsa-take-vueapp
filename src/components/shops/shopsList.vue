@@ -83,15 +83,7 @@
           </a-form-item>
           <!-- 上传图片 -->
           <a-form-item label="上传商铺图片" has-feedback> </a-form-item>
-          <a-upload
-            name="file"
-            :multiple="true"
-            action="https://gimg2.baidu.com/image_search/src=http%3A%2F%2F5b0988e595225.cdn.sohucs.com%2Fimages%2F20180530%2F6011c49b667443fb9e3893ae51cce4e7.jpeg&refer=http%3A%2F%2F5b0988e595225.cdn.sohucs.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1616729512&t=1dec19c6b143dd11060fd7d88cc76100"
-            :headers="headers"
-            @change="handleChange"
-          >
-            <a-button> <a-icon type="upload" /> Click to Upload </a-button>
-          </a-upload>
+          <ShopsShopsImg :shops_id="id" :state="state" :imgs="fileList" />
           <a-form-item label="商铺评分" has-feedback>
             <a-input
               v-decorator="[
@@ -123,7 +115,6 @@
       </a-modal>
     </div>
     <!-- 商铺信息 -->
-
   </div>
 </template>
 
@@ -147,7 +138,13 @@ const columns = [
     fixed: "left"
   },
   { title: "商铺地址", dataIndex: "address", key: "address", width: 300 },
-  { title: "商铺图片", dataIndex: "imgs", key: "imgs", width: 300 },
+  {
+    title: "商铺图片",
+    customRender(rows) {
+      return rows.imgs.map(item => item);
+    },
+    width: 300
+  },
   { title: "商铺评分", dataIndex: "shop_Score", key: "shop_Score", width: 300 },
   {
     title: "操作",
@@ -168,10 +165,12 @@ export default {
       confirmLoading: false,
       // 商铺基本信息
       cname: "",
-      address: "",
-      imgs: "",
+      fileList: [],
+      imgs:[],
+      address:"",
       shop_Score: "",
-      id: 0,
+      id: "",
+      state:false,
       //  上传图片
       headers: {
         authorization: "authorization-text"
@@ -194,14 +193,25 @@ export default {
     },
     // 点击修改执行
     changShop(data) {
+      this.fileList = []
       const { _id, cname, address, imgs, shop_Score } = data;
       this.cname = cname;
       this.address = address;
-      this.imgs = imgs;
+      if (imgs.length > 0) {
+        imgs.map((item, index) => {
+          this.fileList.push({
+            uid: `${index}`,
+            name: "xxx.png",
+            status: "done",
+            url: `http://localhost:3002${item}`
+          });
+        });
+      }
       this.shop_Score = shop_Score;
       this.id = _id;
       // 点击修改弹框显示
       this.visible = true;
+      this.state = !this.state;
     },
 
     // 确定框
@@ -218,6 +228,7 @@ export default {
       setTimeout(() => {
         this.visible = false;
         this.confirmLoading = false;
+        this.getShopsList();
       }, 2000);
     },
     // 取消按钮
@@ -251,7 +262,6 @@ export default {
     searchList() {
       const _id = this.changValues;
       this.getShopText({ _id: _id });
-      
     }
   },
 
@@ -264,6 +274,14 @@ export default {
 <style scoped>
 #a {
   margin-left: 20px;
-  
+}
+.ant-upload-select-picture-card i {
+  font-size: 32px;
+  color: #999;
+}
+
+.ant-upload-select-picture-card .ant-upload-text {
+  margin-top: 8px;
+  color: #666;
 }
 </style>

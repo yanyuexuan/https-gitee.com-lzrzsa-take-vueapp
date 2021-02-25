@@ -7,7 +7,7 @@ export default {
     eachpage: 10,
     maxpage: 0,
     total: 0,
-    rows: [],
+    rows: []
   },
 
   mutations: {
@@ -15,7 +15,7 @@ export default {
       Object.assign(state, payload);
     },
     toggle_curpage: (state, payload) => (state.curpage = payload),
-    toggle_eachpage: (state, payload) => (state.eachpage = payload),
+    toggle_eachpage: (state, payload) => (state.eachpage = payload)
   },
   actions: {
     get: async ({ state, commit }) => {
@@ -40,11 +40,10 @@ export default {
       return data;
     },
     updatacommodity: async (context, payload) => {
-        
       const data = await commodityApi.updatacommodity(payload);
       console.log(data);
-    },
+    }
   },
 
-  modules: {},
+  modules: {}
 };
