@@ -14,13 +14,7 @@ export default {
       .delete("api/shops/del_shops", { params: { _id } })
       .then(response => response.data);
   },
-  changShop: ({
-    _id,
-    cname,
-    address,
-    imgs = "https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=724619198,3564774034&fm=26&gp=0.jpg",
-    shop_Score
-  }) => {
+  changShop: ({ _id, cname, address, imgs = [], shop_Score }) => {
     axios
       .post("api/shops/chang_shops", { _id, cname, address, imgs, shop_Score })
       .then(response => response.data);
@@ -28,6 +22,13 @@ export default {
   getShopText: async ({ _id }) => {
     const { data } = await axios.get("api/shops/get_shops", {
       params: { _id }
+    });
+    return data;
+  },
+  //删除上传图片
+  delimgs: async img => {
+    const { data } = await axios.delete("img/shops/", {
+      data: img
     });
     return data;
   }

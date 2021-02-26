@@ -31,7 +31,7 @@ function getBase64(file) {
     const reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onload = () => resolve(reader.result);
-    reader.onerror = (error) => reject(error);
+    reader.onerror = error => reject(error);
   });
 }
 export default {
@@ -40,17 +40,20 @@ export default {
       previewVisible: false,
       previewImage: "",
       fileList: [],
-      data:{_id:""},
+      data: { _id: "" }
     };
   },
   methods: {
-    ...mapActions("commodity",["delimgs"]),
+    ...mapActions("commodity", ["delimgs"]),
     handleCancel() {
       this.previewVisible = false;
     },
     remove(file) {
-      console.log(file.response,this.$router.history.current.params._id);
-      this.delimgs({path:file.response,_id:this.$router.history.current.params._id});
+      console.log(file.response, this.$router.history.current.params._id);
+      this.delimgs({
+        path: file.response,
+        _id: this.$router.history.current.params._id
+      });
     },
     async handlePreview(file) {
       if (!file.url && !file.preview) {
@@ -60,18 +63,16 @@ export default {
       this.previewVisible = true;
     },
     beforeUpload(file) {
-      this.data._id= this.$router.history.current.params._id
+      this.data._id = this.$router.history.current.params._id;
       console.log(file);
-      
+
       return true;
     },
     handleChange({ fileList }) {
-      
-      
       // console.log(this.$router.history.current.params._id);
       this.fileList = fileList;
-    },
-  },
+    }
+  }
 };
 </script>
 <style>
@@ -86,4 +87,3 @@ export default {
   color: #666;
 }
 </style>
-

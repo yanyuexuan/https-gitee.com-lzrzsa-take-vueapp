@@ -4,7 +4,6 @@
       :columns="columns"
       :data-source="rows"
       :pagination="false"
-      @change="onChange"
       :rowKey="(record, index) => record._id"
     >
       <template slot="action" slot-scope="text, record">
@@ -36,7 +35,7 @@
       show-quick-jumper
       @showSizeChange="onShowSizeChange"
       @change="current"
-      style="margin-top: 5px;"
+      style="margin-top: 5px"
     />
     <CommodityUpdatacommodity
       @showDrawer="showDrawer"
@@ -63,8 +62,6 @@ export default {
           title: "商品名称",
           dataIndex: "name",
           key: "name",
-          filters: [],
-          onFilter: () => {},
         },
         {
           title: "商品分类",
@@ -77,9 +74,7 @@ export default {
             },
           ],
           scopedSlots: { customRender: "tags" },
-          onFilter: (value, record) => {
-            console.log(record, value);
-          },
+          onFilter: (value, record) => record.listName.indexOf(value) === 0,
         },
         { title: "商品描述", dataIndex: "content", key: "content", width: 200 },
         {
@@ -114,10 +109,16 @@ export default {
   },
   watch: {
     curpage: function () {
-      this.get();
+      this.get().then(() => {
+        this.filter_listName();
+        
+      });
     },
     eachpage: function () {
-      this.get();
+      this.get().then(() => {
+        this.filter_listName();
+        
+      });
     },
   },
   methods: {
@@ -128,10 +129,7 @@ export default {
     current(pageNumber) {
       this.toggle_curpage(pageNumber);
     },
-    onChange(pagination, filters, sorter) {
-      console.log(pagination, filters, sorter);
-      this.get(filters);
-    },
+  
     del_commodity(_id) {
       this.del(_id);
       this.get();
@@ -143,23 +141,24 @@ export default {
     showDrawer() {
       this.visible = !this.visible;
     },
-    ...mapActions(["get", "del"]),
+    filter_listName() {
+      const listName = new Set();
+      const data = this.rows.map((item) => listName.add(item.listName[0]));
+      this.columns[1].filters = [...data[0]].map((item) => ({
+        text: item,
+        value: item,
+      }));
+    },
+    ...mapActions(["get", "del", "get_listName"]),
   },
   computed: {
     ...mapState(["maxpage", "total", "rows", "curpage", "eachpage"]),
   },
+
   mounted() {
-    this.get();
-    this.columns[0].filters.push(
-      {
-        text: "脏脏王",
-        value: "脏脏王",
-      },
-      {
-        text: "脏脏王1",
-        value: "脏脏王1",
-      }
-    );
+    this.get().then(() => {
+      this.filter_listName();
+    });
   },
 };
 </script>
@@ -167,6 +166,6 @@ export default {
 <style lang="css" scoped>
 #components-pagination-demo-mini .ant-pagination:not(:last-child) {
   margin-bottom: 24px;
-  
 }
 </style>
+

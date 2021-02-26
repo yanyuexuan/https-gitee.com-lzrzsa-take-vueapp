@@ -45,6 +45,11 @@ export default {
       const data = await shopsApi.getShopText({ _id });
       console.log(data);
       commit("changdata", data);
-    }
+    },
+    // 删除图片
+    delimgs: async (context, payload) => {
+      const data = await shopsApi.delimgs(payload);
+      return data;
+    },
   }
 };
