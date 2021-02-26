@@ -33,7 +33,5 @@ export default {
       const success = await usersApi.update(users);
       return success;
     },
-
-    
   },
 };
