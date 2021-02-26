@@ -6,6 +6,7 @@ import store from "./store";
 import "./untils/components.untils";
 import "ant-design-vue/dist/antd.css";
 import Antd from "ant-design-vue";
+import "./untils/axios";
 
 Vue.use(Antd);
 

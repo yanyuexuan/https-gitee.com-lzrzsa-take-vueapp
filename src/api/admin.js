@@ -50,7 +50,7 @@ export default {
       .catch(console.log),
 
   //保存数据
-  setToken: token => (localStorage[".t"] = token),
+  setToken: token => (localStorage["_t"] = token),
   //获取数据
-  getToken: () => localStorage[".t"]
+  getToken: () => localStorage["_t"]
 };
