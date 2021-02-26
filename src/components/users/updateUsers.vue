@@ -1,24 +1,27 @@
 <template>
-  <a-card hoverable style="width: 400px; height: 300px; margin:auto;">
+  <a-card hoverable style="width: 400px; height: 400px; margin:auto;">
     <h3>修改信息</h3>
-    <div>账号 <input v-model="data.userName" type="text" /></div>
-    <div>密码 <input v-model="data.userPassword" type="text" /></div>
-    <div>电话 <input v-model="data.phone" type="text" /></div>
-    <div>
-      状态
+    <div>账号: <input v-model="data.userName" type="text" /></div>
+    <div style="margin:20px 0">密码: <input v-model="data.userPassword" type="text" /></div>
+    <div>电话: <input v-model="data.phone" type="text" /></div>
+    <div style="margin:20px 0">
+      状态:
       <input type="radio" id="one" :value="true" v-model="data.state" />
-      <label for="one">true</label>
+      <label for="one" style="margin-right:20px">true</label>
       <input type="radio" id="two" :value="false" v-model="data.state" />
       <label for="two">false</label>
     </div>
     <div>
-      头像
+      头像:
       <div>
         <img :src="data.avatar" alt="" />
       </div>
     </div>
 
-    <button @click="update">修改</button>
+    <div style="margin:20px 0">
+      <button @click="update" >修改</button>
+      <button @click="back" style="margin-left:20px">返回</button>
+    </div>
   </a-card>
 </template>
 
@@ -66,19 +69,9 @@ export default {
       }
     },
 
-    handleSubmit(e) {
-      e.preventDefault();
-      //   this.form.validateFields(async (err, values) => {
-      //     const { adminName, adminPassword } = values;
-      //     const data = await this.addAdmin({ adminName, adminPassword });
-      //     if (data) {
-      //       alert("注册成功");
-      //       this.$router.history.push("/info");
-      //     } else {
-      //       alert("注册失败");
-      //       this.$router.history.push("/info/addAdmin");
-      //     }
-      //   });
+    // 返回
+    back: function() {
+      this.$router.history.push("/info/usersList");
     },
   },
 };

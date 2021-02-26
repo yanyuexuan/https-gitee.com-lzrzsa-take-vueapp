@@ -33,7 +33,7 @@ export default {
   computed: {
     ...mapState(["curPage", "eachPage", "maxPage", "total", "rows"]),
   },
-
+  // 调用请求
   mounted() {
     this.get();
   },
@@ -52,4 +52,4 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped></style>
