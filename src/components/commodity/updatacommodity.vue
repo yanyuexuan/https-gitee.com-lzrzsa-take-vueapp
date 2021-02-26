@@ -156,6 +156,7 @@ export default {
     },
 
     onClose() {
+      this.get();
       this.$emit("showDrawer");
     },
   },

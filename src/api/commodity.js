@@ -1,11 +1,12 @@
 import axios from "axios";
 
 export default {
-  get: async ({ curpage = 1, eachpage = 10 } = {}) => {
+  get: async ({ curpage = 1, eachpage = 10, query } = {}) => {
     const { data } = await axios.get("api/commodity", {
       params: {
         curpage,
         eachpage,
+        query,
       },
     });
     return data;
@@ -41,6 +42,15 @@ export default {
     const { data } = await axios.delete("img/commodity/", {
       data: img,
     });
+    return data;
+  },
+  get_listName: async ({ curpage = 1, eachpage = 10, query } = {}) => {
+    const { data } = await axios({
+      method: "post",
+      url: "/api/commodity/get_listName",
+      data: { curpage, eachpage, query },
+    });
+
     return data;
   },
 };

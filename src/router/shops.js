@@ -10,6 +10,7 @@ const routes = [
     path: "addshops",
     name: "addshops",
     component: addShops
-  }
+  },
+  
 ];
 export default routes;
