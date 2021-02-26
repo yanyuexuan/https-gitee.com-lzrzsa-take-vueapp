@@ -13,9 +13,9 @@
             'adminName',
             {
               rules: [
-                { required: true, message: 'Please input your username!' },
-              ],
-            },
+                { required: true, message: 'Please input your username!' }
+              ]
+            }
           ]"
           placeholder="账号"
         >
@@ -28,9 +28,9 @@
             'adminPassword',
             {
               rules: [
-                { required: true, message: 'Please input your Password!' },
-              ],
-            },
+                { required: true, message: 'Please input your Password!' }
+              ]
+            }
           ]"
           type="password"
           placeholder="密码"
@@ -44,8 +44,8 @@
             'remember',
             {
               valuePropName: 'checked',
-              initialValue: true,
-            },
+              initialValue: true
+            }
           ]"
         >
           Remember me
@@ -77,17 +77,18 @@ export default {
       this.form.validateFields(async (err, values) => {
         const { adminName, adminPassword } = values;
         const data = await this.logining({ adminName, adminPassword });
-        console.log(data);
         if (data) {
           alert("登录成功");
+          let json_data = JSON.stringify(data[1][0]);
+          localStorage["index_data"] = json_data;
           this.$router.history.push("/info");
         } else {
           alert("登录失败");
           this.$router.history.push("/");
         }
       });
-    },
-  },
+    }
+  }
 };
 </script>
 

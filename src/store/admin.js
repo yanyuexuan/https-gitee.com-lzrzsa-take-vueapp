@@ -9,21 +9,22 @@ export default {
     eachPage: 10,
     maxPage: 0,
     total: 0,
-    rows: [],
+    rows: []
   },
   // 方法
   mutations: {
-    update: (state, payload) => Object.assign(state, payload),
+    update: (state, payload) => Object.assign(state, payload)
   },
   // 异步请求
   actions: {
     // 登录
     logining: async (context, admin) => {
-      const { success, token } = await adminApi.login(admin);
+      const { success, token, data } = await adminApi.login(admin);
       if (success) {
         adminApi.setToken(token);
       }
-      return success;
+      console.log(data);
+      return [success, data];
     },
     // 新增
     addAdmin: async (context, admin) => {
@@ -45,6 +46,6 @@ export default {
     updateAdmin: async (context, admin) => {
       const success = await adminApi.update(admin);
       return success;
-    },
-  },
+    }
+  }
 };

@@ -13,9 +13,9 @@
             'adminName',
             {
               rules: [
-                { required: true, message: 'Please input your username!' },
-              ],
-            },
+                { required: true, message: 'Please input your username!' }
+              ]
+            }
           ]"
           placeholder="账号"
         >
@@ -28,15 +28,30 @@
             'adminPassword',
             {
               rules: [
-                { required: true, message: 'Please input your Password!' },
-              ],
-            },
+                { required: true, message: 'Please input your Password!' }
+              ]
+            }
           ]"
           type="password"
           placeholder="密码"
         >
           <a-icon slot="prefix" type="lock" style="color: rgba(0,0,0,.25)" />
         </a-input>
+      </a-form-item>
+      <a-form-item>
+        <a-div-item>选择权限：</a-div-item>
+        <a-Switch
+          checkedChildren="超管"
+          unCheckedChildren="店家"
+          v-decorator="[
+            'root',
+            {
+              rules: [
+                { required: true, message: 'Please input your Password!' }
+              ]
+            }
+          ]"
+        />
       </a-form-item>
       <a-form-item>
         <a-button type="primary" html-type="submit" class="login-form-button">
@@ -61,8 +76,9 @@ export default {
     handleSubmit(e) {
       e.preventDefault();
       this.form.validateFields(async (err, values) => {
-        const { adminName, adminPassword } = values;
-        const data = await this.addAdmin({ adminName, adminPassword });
+        const { adminName, adminPassword, root } = values;
+        console.log(adminName, adminPassword, root);
+        const data = await this.addAdmin({ adminName, adminPassword, root });
         if (data) {
           alert("注册成功");
           this.$router.history.push("/info/adminList");
@@ -71,8 +87,8 @@ export default {
           this.$router.history.push("/info/addAdmin");
         }
       });
-    },
-  },
+    }
+  }
 };
 </script>
 
