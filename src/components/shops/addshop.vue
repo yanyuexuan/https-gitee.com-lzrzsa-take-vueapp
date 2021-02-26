@@ -1,10 +1,5 @@
 <template>
   <div id="content">
-    <img
-      id="imgs"
-      src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2F5b0988e595225.cdn.sohucs.com%2Fimages%2F20180530%2F6011c49b667443fb9e3893ae51cce4e7.jpeg&refer=http%3A%2F%2F5b0988e595225.cdn.sohucs.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1616745297&t=e06ecb0b08e5fcdd4d4a05938918a900"
-      alt=""
-    />
     <a-form :form="form" @submit="handleSubmit" id="froms">
       <a-form-item v-bind="formItemLayout" label="商铺名称" has-feedback>
         <a-input
