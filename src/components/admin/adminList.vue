@@ -1,37 +1,55 @@
 <template>
-  <table border="1" style="width:500px;text-align:center">
-    <thead>
-      <tr>
-        <th style="width:50px">id</th>
-        <th style="width:50px">姓名</th>
-        <th style="width:50px">密码</th>
-        <th style="width:50px">操作</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr v-for="item in rows" :key="item._id">
-        <td>{{ item._id }}</td>
-        <td>{{ item.adminName }}</td>
-        <td>{{ item.adminPassword }}</td>
-        <td>
-          <button @click="change" :id="item._id">修改</button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+  <a-table rowKey="_id" :columns="columns" :data-source="rows">
+    <a slot="name" slot-scope="text">{{ text }}</a>
+    <span slot="pic" slot-scope="text, record">
+      <img style="width:50px;heigth:50px" :src="record.avatar" />
+    </span>
+    <template slot="operation" slot-scope="text, record">
+      <a @click="change(record)" href="javascript:;">修改</a>
+    </template>
+  </a-table>
 </template>
 
 <script>
 import { createNamespacedHelpers } from "vuex";
 const { mapState, mapActions } = createNamespacedHelpers("admin");
+const columns = [
+  {
+    title: "id",
+    dataIndex: "_id",
+    key: "_id",
+    width: 250
+  },
+  {
+    title: "账户",
+    dataIndex: "adminName",
+    key: "adminName",
+    width: 200
+  },
+  {
+    title: "密码",
+    dataIndex: "adminPassword",
+    key: "adminPassword",
+    width: 200,
+    ellipsis: true
+  },
+  {
+    title: "操作",
+    dataIndex: "change",
+    key: "change",
+    scopedSlots: { customRender: "operation" }
+  }
+];
 
 export default {
   data() {
-    return {};
+    return {
+      columns
+    };
   },
 
   computed: {
-    ...mapState(["curPage", "eachPage", "maxPage", "total", "rows"]),
+    ...mapState(["curPage", "eachPage", "maxPage", "total", "rows"])
   },
   // 调用请求
   mounted() {
@@ -41,14 +59,13 @@ export default {
   methods: {
     ...mapActions(["get", "find"]),
 
-    change: async function(e) {
-      const _id = e.target.id;
+    change: async function({_id}) {
       const data = await this.find({ _id });
       if (data) {
         this.$router.history.push(`/info/updateAdmin/${_id}`);
       }
-    },
-  },
+    }
+  }
 };
 </script>
 

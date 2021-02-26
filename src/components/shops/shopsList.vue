@@ -15,6 +15,9 @@
       rowKey="_id"
       :scroll="{ x: 1500, y: 600 }"
     >
+      <span slot="pic" slot-scope="text, record">
+        <img style="width:50px;heigth:50px" :src="'http://localhost:3002'+record.imgs" />
+      </span>
       <template slot="action" slot-scope="record">
         <a-button
           type="primary"
@@ -140,9 +143,8 @@ const columns = [
   { title: "商铺地址", dataIndex: "address", key: "address", width: 300 },
   {
     title: "商铺图片",
-    customRender(rows) {
-      return rows.imgs.map(item => item);
-    },
+    dataIndex: "imgs",
+    scopedSlots: { customRender: "pic" },
     width: 300
   },
   { title: "商铺评分", dataIndex: "shop_Score", key: "shop_Score", width: 300 },
@@ -166,11 +168,11 @@ export default {
       // 商铺基本信息
       cname: "",
       fileList: [],
-      imgs:[],
-      address:"",
+      imgs: [],
+      address: "",
       shop_Score: "",
       id: "",
-      state:false,
+      state: false,
       //  上传图片
       headers: {
         authorization: "authorization-text"
@@ -193,10 +195,11 @@ export default {
     },
     // 点击修改执行
     changShop(data) {
-      this.fileList = []
+      this.fileList = [];
       const { _id, cname, address, imgs, shop_Score } = data;
       this.cname = cname;
       this.address = address;
+
       if (imgs.length > 0) {
         imgs.map((item, index) => {
           this.fileList.push({
