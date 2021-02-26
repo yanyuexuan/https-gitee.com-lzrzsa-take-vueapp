@@ -25,6 +25,7 @@
             show-time
             format="YYYY-MM-DD HH:mm:ss"
             :value="getDateRange(startTime, endTime)"
+            @change="onChange"
           />
         </a-form-item>
         <a-form-item>
@@ -39,6 +40,7 @@
       :columns="columns"
       :data-source="rows"
       :scroll="{ x: 1500, y: 600 }"
+      rowKey="_id"
     >
       <template slot="action" slot-scope="record">
         <a-button
@@ -74,7 +76,7 @@ const columns = [
     title: "优惠券金额",
     dataIndex: "discount_Amount",
     key: "discount_Amount",
-    width: 100,
+    width: 100
   },
   { title: "开始时间", dataIndex: "time_start", key: "time_start", width: 100 },
   { title: "结束时间", dataIndex: "time_end", key: "time_end", width: 100 },
@@ -84,23 +86,10 @@ const columns = [
     key: "operation",
     fixed: "right",
     width: 200,
-    scopedSlots: { customRender: "action" },
-  },
+    scopedSlots: { customRender: "action" }
+  }
 ];
 
-// const data = [];
-// function ergodic(rows) {
-//   console.log(rows);
-//    rows.map((item, index) => {
-//       console.log(item,'lkdls');
-//     data.push({
-//       key: index,
-//       _id: `${item._id}`,
-//     //   coupon_Name:`${coupon_Name}`,
-
-//     });
-//   });
-// }
 export default {
   data() {
     return {
@@ -115,7 +104,7 @@ export default {
       endTime: "",
       startTime: "",
       status: "",
-      disp:false,
+      disp: false
     };
   },
   // 数据
@@ -128,8 +117,8 @@ export default {
       set(newVal) {
         this.$store.state.coupons.curPage = newVal;
         this.get();
-      },
-    },
+      }
+    }
   },
   beforeCreate() {
     this.form = this.$form.createForm(this, { name: "确认新增" });
@@ -137,6 +126,10 @@ export default {
   methods: {
     ...mapActions(["get", "dels", "upCoupon"]),
     ...mapMutations(["togglePage"]),
+    onChange(date, dateString) {
+      this.dateString = dateString;
+      // console.log(date, dateString)
+    },
     // 时间返显
     getDateRange(startDate, endDate) {
       if (
@@ -152,6 +145,7 @@ export default {
     // 删除优惠券
     handleDelete({ _id }) {
       this.dels({ _id });
+      this.get();
     },
     // 修改
     upCoupons(e) {
@@ -159,11 +153,10 @@ export default {
       this.coupon_Name = e.coupon_Name;
       this.discount_Amount = e.discount_Amount;
       this.coupon_id = e._id;
-      (this.startTime = e.time_start),
-        (this.endTime = e.time_end),
-        (this.status = e.status);
-        this.disp=true
-        console.log(this.disp);
+      this.startTime = e.time_start;
+      this.endTime = e.time_end;
+      this.status = e.status;
+      this.disp = true;
     },
     // 确认修改
     submit(e) {
@@ -176,29 +169,29 @@ export default {
         discount_Amount: this.discount_Amount,
         status: this.status,
         time_start: this.startTime,
-        time_end: this.endTime,
+        time_end: this.endTime
       });
-      this.disp=false
+      this.disp = false;
       console.log(this.disp);
-    },
+    }
   },
   watch: {
     curPage() {
       this.get();
-    },
+    }
   },
   mounted() {
     this.get();
     // ergodic(this.rows);
-  },
+  }
 };
 </script>
 
 <style>
-      .updatadispaly{
-        display: "block",
-      }
-      .updatahide {
-        display: "none",
-      }
+.updatadispaly {
+  display: "block";
+}
+.updatahide {
+  display: "none";
+}
 </style>
