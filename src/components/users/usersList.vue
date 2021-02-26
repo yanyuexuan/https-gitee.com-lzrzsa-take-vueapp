@@ -1,43 +1,68 @@
 <template>
-  <table border="1" style="width:700px;text-align:center">
-    <thead>
-      <tr>
-        <th style="width:50px">id</th>
-        <th style="width:50px">账号</th>
-        <th style="width:50px">密码</th>
-        <th style="width:50px">状态</th>
-        <th style="width:50px">头像</th>
-        <th style="width:50px">电话</th>
-        <th style="width:50px">操作</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr v-for="item in rows" :key="item._id">
-        <td>{{ item._id }}</td>
-        <td>{{ item.userName }}</td>
-        <td>{{ item.userPassword }}</td>
-        <td>{{ item.state }}</td>
-        <td>{{ item.avatar }}</td>
-        <td>{{ item.phone }}</td>
-        <td>
-          <button @click="change" :id="item._id">修改</button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+  <a-table rowKey="_id" :columns="columns" :data-source="rows">
+    <a slot="name" slot-scope="text">{{ text }}</a>
+    <span slot="pic" slot-scope="text, record">
+      <img style="width:50px;heigth:50px" :src="record.avatar" />
+    </span>
+    <template slot="operation" slot-scope="text, record">
+      <a @click="change(record)" href="javascript:;">修改</a>
+    </template>
+  </a-table>
 </template>
 
 <script>
 import { createNamespacedHelpers } from "vuex";
 const { mapState, mapActions } = createNamespacedHelpers("users");
+const columns = [
+  {
+    title: "id",
+    dataIndex: "_id",
+    key: "_id",
+    width: 250
+  },
+  {
+    title: "账户",
+    dataIndex: "userName",
+    key: "userName",
+    width: 150
+  },
+  {
+    title: "密码",
+    dataIndex: "userPassword",
+    key: "userPassword",
+    width: 150,
+    ellipsis: true
+  },
+  {
+    title: "头像",
+    dataIndex: "avatar",
+    key: "avatar",
+    scopedSlots: { customRender: "pic" },
+    width: 150
+  },
+  {
+    title: "联系电话",
+    dataIndex: "phone",
+    key: "phone",
+    ellipsis: true
+  },
+  {
+    title: "操作",
+    dataIndex: "change",
+    key: "change",
+    scopedSlots: { customRender: "operation" }
+  }
+];
 
 export default {
   data() {
-    return {};
+    return {
+      columns
+    };
   },
 
   computed: {
-    ...mapState(["curPage", "eachPage", "maxPage", "total", "rows"]),
+    ...mapState(["curPage", "eachPage", "maxPage", "total", "rows"])
   },
 
   mounted() {
@@ -47,13 +72,12 @@ export default {
   methods: {
     ...mapActions(["get", "find"]),
 
-    change: async function(e) {
-      const _id = e.target.id;
-      const data = await this.find({ _id });
-      if(data){
-          this.$router.history.push(`/info/updateUsers/${_id}`);
+    change: async function(datas) {
+      const data = await this.find({ _id: datas._id });
+      if (data) {
+        this.$router.history.push(`/info/updateUsers/${datas._id}`);
       }
-    },
-  },
+    }
+  }
 };
 </script>
